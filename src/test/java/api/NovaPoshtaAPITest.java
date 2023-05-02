@@ -1,8 +1,9 @@
 package api;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.restassured.http.ContentType;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,16 +14,16 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 
 public class NovaPoshtaAPITest extends BaseApiTest {
-    String API_key = "nnnnnnnnnnnnnn";
+    String API_key = "baa7bc5c879e706e62827449deb4113f";
     Map<String, Object> reqBody = new HashMap<>();
 
-    @BeforeEach
+    @BeforeMethod
     public void setReqBody() {
         Map<String, Object> methodProperties = new HashMap<>();
         methodProperties.put("FindByString", "Київ");
         methodProperties.put("Limit", 5);
         reqBody.put("apiKey", API_key);
-        reqBody.put("modelName", "API.Address");
+        reqBody.put("modelName", "Address");
         reqBody.put("calledMethod", "getSettlements");
         reqBody.put("methodProperties", methodProperties);
     }
@@ -40,54 +41,54 @@ public class NovaPoshtaAPITest extends BaseApiTest {
                 .extract()
                 .body().jsonPath().getList("data", Address.class);
         addressList.forEach(x -> {
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getSettlementType().contains("563ced10-f210-11e3-8c4a-0050568002cf") ||
                             x.getSettlementType().contains("563ced13-f210-11e3-8c4a-0050568002cf")
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getSettlementTypeDescription().contains("село") ||
                             x.getSettlementTypeDescription().contains("місто")
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getSettlementTypeDescriptionRu().contains("село") ||
                             x.getSettlementTypeDescriptionRu().contains("город")
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getSettlementTypeDescriptionTranslit().contains("misto") ||
                             x.getSettlementTypeDescriptionTranslit().contains("selo")
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery1().contains("1") ||
                             x.getDelivery1().isEmpty()
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery2().contains("1") ||
                             x.getDelivery2().isEmpty()
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery3().contains("1") ||
                             x.getDelivery3().isEmpty()
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery4().contains("1") ||
                             x.getDelivery4().isEmpty()
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery5().contains("1") ||
                             x.getDelivery5().isEmpty()
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery6().contains("1") ||
                             x.getDelivery6().contains("0") ||
                             x.getDelivery6().isEmpty()
             );
-            Assertions.assertTrue(
+            Assert.assertTrue(
                     x.getDelivery7().contains("1") ||
                             x.getDelivery7().contains("0") ||
                             x.getDelivery7().isEmpty()
             );
-            Assertions.assertEquals(1, x.getSpecialCashCheck());
-            Assertions.assertTrue(
+            Assert.assertEquals(1, x.getSpecialCashCheck());
+            Assert.assertTrue(
                     x.getWarehouse().contains("0") ||
                             x.getWarehouse().contains("1")
             );
@@ -99,6 +100,7 @@ public class NovaPoshtaAPITest extends BaseApiTest {
         given()
                 .spec(requestSpecification)
                 .body(reqBody)
+                .contentType(ContentType.JSON)
                 .when()
                 .post()
                 .then()

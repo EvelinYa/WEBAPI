@@ -7,14 +7,14 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.BeforeEach;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseApiTest {
     protected RequestSpecification requestSpecification;
     protected ResponseSpecification responseSpecification;
     protected Logger log;
 
-    @BeforeEach
+    @BeforeMethod
     public void setSpecs(){
         requestSpecification = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)

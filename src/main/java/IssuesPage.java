@@ -2,9 +2,9 @@ import helper.Level;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -34,29 +34,29 @@ public class IssuesPage extends BasePage {
 
     public void elementsDefaultDisplay() {
         printColorMessage("Check of Default Elements Display has been started.", log, Level.INFO);
-        Assertions.assertTrue(filtersButton.isDisplayed(), "Filters Button is invisible");
-        Assertions.assertTrue(labelsButton.isDisplayed(), "Labels Button is invisible");
-        Assertions.assertTrue(milestonesButton.isDisplayed(), "Milestones Button is invisible");
-        Assertions.assertTrue(newIssueButton.isDisplayed(), "New Issue Button is invisible");
-        Assertions.assertTrue(selectAllIssuesCheckbox.isDisplayed(), "Select All Issues Checkbox is invisible");
-        Assertions.assertTrue(openIssuesFilter.isDisplayed(), "Open Issues Filter is invisible");
-        Assertions.assertTrue(authorFilter.isDisplayed(), "Author Filter is invisible");
-        Assertions.assertTrue(labelFilter.isDisplayed(), "Label Filter is invisible");
-        Assertions.assertTrue(projectsFilter.isDisplayed(), "Projects Filter is invisible");
-        Assertions.assertTrue(milestonesFilter.isDisplayed(), "Milestones Filter is invisible");
-        Assertions.assertTrue(assigneeFilter.isDisplayed(), "Assignee Filter is invisible");
-        Assertions.assertTrue(sortFilter.isDisplayed(), "Sort Filter is invisible");
+        Assert.assertTrue(filtersButton.isDisplayed(), "Filters Button is invisible");
+        Assert.assertTrue(labelsButton.isDisplayed(), "Labels Button is invisible");
+        Assert.assertTrue(milestonesButton.isDisplayed(), "Milestones Button is invisible");
+        Assert.assertTrue(newIssueButton.isDisplayed(), "New Issue Button is invisible");
+        Assert.assertTrue(selectAllIssuesCheckbox.isDisplayed(), "Select All Issues Checkbox is invisible");
+        Assert.assertTrue(openIssuesFilter.isDisplayed(), "Open Issues Filter is invisible");
+        Assert.assertTrue(authorFilter.isDisplayed(), "Author Filter is invisible");
+        Assert.assertTrue(labelFilter.isDisplayed(), "Label Filter is invisible");
+        Assert.assertTrue(projectsFilter.isDisplayed(), "Projects Filter is invisible");
+        Assert.assertTrue(milestonesFilter.isDisplayed(), "Milestones Filter is invisible");
+        Assert.assertTrue(assigneeFilter.isDisplayed(), "Assignee Filter is invisible");
+        Assert.assertTrue(sortFilter.isDisplayed(), "Sort Filter is invisible");
         printColorMessage("Default display of Elements has been checked.", log, Level.INFO);
     }
 
     public void issueTitleDisplayAndWork(String issueTitleXPath, String issueTitleXPAthOnIssuePage) {
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement issueTitle = driver.findElement(By.xpath(issueTitleXPath));
-        Assertions.assertTrue(issueTitle.isDisplayed(), "Issue Title is invisible");
+        Assert.assertTrue(issueTitle.isDisplayed(), "Issue Title is invisible");
         issueTitle.click();
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement issueNameOnIssuePage = driver.findElement(By.xpath(issueTitleXPAthOnIssuePage));
-        Assertions.assertTrue(issueNameOnIssuePage.isDisplayed(), "Issue Name On Issue Page is invisible");
+        Assert.assertTrue(issueNameOnIssuePage.isDisplayed(), "Issue Name On Issue Page is invisible");
         WebElement issuesTab = driver.findElement(By.id("issues-tab"));
         issuesTab.click();
         printColorMessage("Issue Title is Displayed And Work", log, Level.INFO);
@@ -65,7 +65,7 @@ public class IssuesPage extends BasePage {
     public void issueLabelDisplay(String LabelXPath) {
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement label = driver.findElement(By.xpath(LabelXPath));
-        Assertions.assertTrue(label.isDisplayed(), "Issue Label is invisible");
+        Assert.assertTrue(label.isDisplayed(), "Issue Label is invisible");
         printColorMessage("Issue Label is Displayed", log, Level.INFO);
     }
 
@@ -75,7 +75,7 @@ public class IssuesPage extends BasePage {
         milestone.click();
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement milestoneName = driver.findElement(By.xpath(milestoneXPAthOnIssuePage));
-        Assertions.assertTrue(milestoneName.isDisplayed(), "Issue Milestone Name is invisible");
+        Assert.assertTrue(milestoneName.isDisplayed(), "Issue Milestone Name is invisible");
         WebElement issuesTab = driver.findElement(By.id("issues-tab"));
         issuesTab.click();
         printColorMessage("Issue Milestone is Displayed and Work", log, Level.INFO);
@@ -83,32 +83,32 @@ public class IssuesPage extends BasePage {
 
     public void issueUserAvatarDisplay(String userAvatarXPath) {
         WebElement userAvatar = driver.findElement(By.xpath(userAvatarXPath));
-        Assertions.assertTrue(userAvatar.isDisplayed(), "Issue User Avatar is invisible");
+        Assert.assertTrue(userAvatar.isDisplayed(), "Issue User Avatar is invisible");
         printColorMessage("Issue User Avatar is Displayed is Displayed", log, Level.INFO);
     }
 
     public void issueCommentDisplay(String commentXPath) {
         WebElement issueComment = driver.findElement(By.xpath(commentXPath));
-        Assertions.assertTrue(issueComment.isDisplayed(), "Issue Comment is invisible");
+        Assert.assertTrue(issueComment.isDisplayed(), "Issue Comment is invisible");
         printColorMessage("Issue Comment is Displayed", log, Level.INFO);
     }
 
     public void noOpenIssues() {
         WebElement noOpenIssuesText = driver.findElement(By.xpath("//h3[text()='There aren’t any open issues.']"));
-        Assertions.assertTrue(noOpenIssuesText.isDisplayed(), "No Open Issues text is invisible");
-        Assertions.assertEquals("There aren’t any open issues.", noOpenIssuesText.getText(), "No Open Issues text is incorrect");
+        Assert.assertTrue(noOpenIssuesText.isDisplayed(), "No Open Issues text is invisible");
+        Assert.assertEquals("There aren’t any open issues.", noOpenIssuesText.getText(), "No Open Issues text is incorrect");
         gitHubTextInfo();
         checkSearchValue("//input[@value='is:issue is:open ']");
         printColorMessage("'0 Open' issues is Displayed", log, Level.INFO);
     }
 
     public void noClosedIssues() {
-        Assertions.assertTrue(closedIssuesFilter.isDisplayed(), "Closed Issues Filter is invisible");
+        Assert.assertTrue(closedIssuesFilter.isDisplayed(), "Closed Issues Filter is invisible");
         closedIssuesFilter.click();
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement noClosedIssuesText = driver.findElement(By.xpath("//h3[contains(text(),'No results ')]"));
-        Assertions.assertTrue(noClosedIssuesText.isDisplayed(), "No Closed Issues text is invisible");
-        Assertions.assertEquals("No results matched your search.", noClosedIssuesText.getText(), "No Open Issues text is incorrect");
+        Assert.assertTrue(noClosedIssuesText.isDisplayed(), "No Closed Issues text is invisible");
+        Assert.assertEquals("No results matched your search.", noClosedIssuesText.getText(), "No Open Issues text is incorrect");
         gitHubTextInfo();
         clearSearchLinkDisplay();
         checkSearchValue("//input[@value='is:issue is:closed ']");
@@ -117,63 +117,63 @@ public class IssuesPage extends BasePage {
 
     public void clearSearchLinkDisplay() {
         WebElement clearSearchQuery = driver.findElement(By.partialLinkText("Clear current "));
-        Assertions.assertTrue(clearSearchQuery.isDisplayed(), "Clear Search Query text is invisible");
-        Assertions.assertEquals("Clear current search query, filters, and sorts", clearSearchQuery.getText(), "Clear Search Query text is incorrect");
+        Assert.assertTrue(clearSearchQuery.isDisplayed(), "Clear Search Query text is invisible");
+        Assert.assertEquals("Clear current search query, filters, and sorts", clearSearchQuery.getText(), "Clear Search Query text is incorrect");
         printColorMessage("\"Clear current search query, filters, and sorts\" is displayed", log, Level.INFO);
 
     }
 
     public void gitHubTextInfo() {
         WebElement noIssuesIcon = driver.findElement(By.cssSelector(".blankslate-icon"));
-        Assertions.assertTrue(noIssuesIcon.isDisplayed(), "No Issues Icon is invisibe");
+        Assert.assertTrue(noIssuesIcon.isDisplayed(), "No Issues Icon is invisibe");
         WebElement allOfGitHubLink = driver.findElement(By.linkText("all of GitHub"));
-        Assertions.assertTrue(allOfGitHubLink.isDisplayed(), "'allOfGitHub' link is invisible");
+        Assert.assertTrue(allOfGitHubLink.isDisplayed(), "'allOfGitHub' link is invisible");
         WebElement advancedSearchLink = driver.findElement(By.linkText("advanced search"));
-        Assertions.assertTrue(advancedSearchLink.isDisplayed(), "'advancedSearch' link is invisible");
+        Assert.assertTrue(advancedSearchLink.isDisplayed(), "'advancedSearch' link is invisible");
         WebElement youCouldSearchText = driver.findElement(By.xpath("//p[contains(text(),'You could search ')]"));
-        Assertions.assertTrue(youCouldSearchText.isDisplayed(),"'YouCouldSearch..' text is invisible");
-        Assertions.assertEquals("You could search all of GitHub or try an advanced search.", youCouldSearchText.getText(), "gitHubTextInfo is incorrect");
+        Assert.assertTrue(youCouldSearchText.isDisplayed(),"'YouCouldSearch..' text is invisible");
+        Assert.assertEquals("You could search all of GitHub or try an advanced search.", youCouldSearchText.getText(), "gitHubTextInfo is incorrect");
         printColorMessage("\"You could search all of GitHub or try an advanced search.\" text with links is displayed", log, Level.INFO);
     }
 
     public void checkSearchValue(String locator) {
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement inputValue = driver.findElement(By.xpath(locator));
-        Assertions.assertTrue(inputValue.isDisplayed(), "Input value is invisible");
+        Assert.assertTrue(inputValue.isDisplayed(), "Input value is invisible");
         printColorMessage("Search Input Value is checked", log, Level.INFO);
     }
 
     public String issuesTabCounter() {
         WebElement IssueTabCounter = driver.findElement(By.xpath("//a[@id='issues-tab']/span[2]"));
-        Assertions.assertTrue(IssueTabCounter.isDisplayed(), "Issue Tab Counter is invisible");
+        Assert.assertTrue(IssueTabCounter.isDisplayed(), "Issue Tab Counter is invisible");
         printColorMessage("Issues Tab Counter is checked", log, Level.INFO);
         return IssueTabCounter.getText();
     }
 
     public String labelsButtonCounter() {
         WebElement labelsButtonCounter = driver.findElement(By.partialLinkText("Labels"));
-        Assertions.assertTrue(labelsButtonCounter.isDisplayed(), "Labels Button Counter is invisible");
+        Assert.assertTrue(labelsButtonCounter.isDisplayed(), "Labels Button Counter is invisible");
         printColorMessage("Labels Button Counter is checked", log, Level.INFO);
         return labelsButtonCounter.getText();
     }
 
     public String milestonesButtonCounter() {
         WebElement milestonesButtonCounter = driver.findElement(By.partialLinkText("Milestones"));
-        Assertions.assertTrue(milestonesButtonCounter.isDisplayed(), "Milestones Button Counter is invisible");
+        Assert.assertTrue(milestonesButtonCounter.isDisplayed(), "Milestones Button Counter is invisible");
         printColorMessage("Milestones Button Counter is checked", log, Level.INFO);
         return milestonesButtonCounter.getText();
     }
 
     public String openIssuesCounter() {
         WebElement openIssuesFilterCounter = driver.findElement(By.xpath("//div[@id='js-issues-toolbar']/div[2]//a[@data-ga-click='Issues, Table state, Open']"));
-        Assertions.assertTrue(openIssuesFilterCounter.isDisplayed(), "Open Issues Filter Counter is invisible");
+        Assert.assertTrue(openIssuesFilterCounter.isDisplayed(), "Open Issues Filter Counter is invisible");
         printColorMessage("Open Issues Counter is checked", log, Level.INFO);
         return openIssuesFilterCounter.getText();
     }
 
     public String closedIssuesCounter() {
         WebElement closedIssuesFilterCounter = driver.findElement(By.xpath("//div[@id='js-issues-toolbar']/div[2]//a[@data-ga-click='Issues, Table state, Closed']"));
-        Assertions.assertTrue(closedIssuesFilterCounter.isDisplayed(), "Closed Issues Filter Counter is invisible");
+        Assert.assertTrue(closedIssuesFilterCounter.isDisplayed(), "Closed Issues Filter Counter is invisible");
         printColorMessage("Closed Issues Counter is checked", log, Level.INFO);
         return closedIssuesFilterCounter.getText();
     }

@@ -2,7 +2,7 @@ import helper.Level;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.junit.jupiter.api.Assertions;
+import org.testng.Assert;
 
 import static helper.ColorPrinter.printColorMessage;
 
@@ -18,9 +18,9 @@ public class LoginPage extends BasePage {
     }
 
     public MainPage successfulLogin(String login, String password) {
-        Assertions.assertTrue(loginField.isDisplayed(), "Login field is invisible");
-        Assertions.assertTrue(passwordField.isDisplayed(), "Password field is invisible");
-        Assertions.assertTrue(signInButton.isDisplayed(), "Sign in Button field is invisible");
+        Assert.assertTrue(loginField.isDisplayed(), "Login field is invisible");
+        Assert.assertTrue(passwordField.isDisplayed(), "Password field is invisible");
+        Assert.assertTrue(signInButton.isDisplayed(), "Sign in Button field is invisible");
         loginField.sendKeys(login);
         passwordField.sendKeys(password);
         signInButton.click();

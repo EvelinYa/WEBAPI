@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class IssuesTest extends BaseTest {
     @Test
@@ -20,10 +20,10 @@ public class IssuesTest extends BaseTest {
         issuesPage.elementsDefaultDisplay();
         issuesPage.noOpenIssues();
         issuesPage.noClosedIssues();
-        Assertions.assertEquals("Labels 9", issuesPage.labelsButtonCounter());
-        Assertions.assertEquals("Milestones 1", issuesPage.milestonesButtonCounter());
-        Assertions.assertEquals("0 Open", issuesPage.openIssuesCounter());
-        Assertions.assertEquals("0 Closed", issuesPage.closedIssuesCounter());
+        Assert.assertEquals("Labels 9", issuesPage.labelsButtonCounter());
+        Assert.assertEquals("Milestones 1", issuesPage.milestonesButtonCounter());
+        Assert.assertEquals("0 Open", issuesPage.openIssuesCounter());
+        Assert.assertEquals("0 Closed", issuesPage.closedIssuesCounter());
     }
 
     @Test
@@ -52,8 +52,8 @@ public class IssuesTest extends BaseTest {
                 "//span[text()='Milestone1']//ancestor::label",
                 "Test Issue 1 comment 1"
         );
-        Assertions.assertEquals("1", issuesPage.issuesTabCounter());
-        Assertions.assertEquals("1 Open", issuesPage.openIssuesCounter());
+        Assert.assertEquals("1", issuesPage.issuesTabCounter());
+        Assert.assertEquals("1 Open", issuesPage.openIssuesCounter());
 
         issuesPage.issueTitleDisplayAndWork(
                 "//a[text()='Test Issue 1']",

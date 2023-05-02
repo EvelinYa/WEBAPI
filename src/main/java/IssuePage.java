@@ -1,9 +1,9 @@
 import helper.Level;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -99,7 +99,7 @@ public class IssuePage extends BasePage {
         submitDeleteButton.click();
         webDriverWait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement submitDeleteMessage = driver.findElement(By.xpath("//div[contains(text(),'The issue was successfully deleted.')]"));
-        Assertions.assertEquals("The issue was successfully deleted.", submitDeleteMessage.getText());
+        Assert.assertEquals("The issue was successfully deleted.", submitDeleteMessage.getText());
         printColorMessage("User has removed the Issue from Issue Page", log, Level.INFO);
     }
 }
