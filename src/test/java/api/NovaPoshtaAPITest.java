@@ -22,7 +22,7 @@ public class NovaPoshtaAPITest extends BaseApiTest {
         methodProperties.put("FindByString", "Київ");
         methodProperties.put("Limit", 5);
         reqBody.put("apiKey", API_key);
-        reqBody.put("modelName", "API.Address");
+        reqBody.put("modelName", "Address");
         reqBody.put("calledMethod", "getSettlements");
         reqBody.put("methodProperties", methodProperties);
     }
