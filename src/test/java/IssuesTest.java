@@ -7,7 +7,7 @@ public class IssuesTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.goToLoginPage();
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.successfulLogin("evelinka830@gmail.com", "evelinka830@gmail.com");
+        loginPage.successfulLogin("nnnnnnnn", "nnnnnnnnnn");
         MainPage mainPage = new MainPage(driver);
         mainPage.goToMenuPage();
         MenuPage menuPage = new MenuPage(driver);

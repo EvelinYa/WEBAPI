@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 
 public class NovaPoshtaAPITest extends BaseApiTest {
-    String API_key = "baa7bc5c879e706e62827449deb4113f";
+    String API_key = "nnnnnnnnnnnnn";
     Map<String, Object> reqBody = new HashMap<>();
 
     @BeforeMethod
